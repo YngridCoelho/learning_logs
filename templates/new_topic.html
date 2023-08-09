@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+
+{% block header %}
+
+<h1> Add new topic </h1>
+{% endblock header %}
+
+
+{% block content %}
+<section class="container col-8">
+<form action="{% url 'new_topic' %}" method="POST">
+
+{% csrf_token %}
+<!--- estiliza seu formulario com padrões default do bootstrap -->
+{% bootstrap_form form %} 
+
+<!--- adiciona a estilização do bootstrap aos botões -->
+{% buttons %}
+<button name="submit" class="btn btn-primary">add topic</button>
+{% endbuttons %}
+</form>
+</section>
+
+{% endblock %}

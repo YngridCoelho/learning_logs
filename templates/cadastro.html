@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block header %}
+<p> register </p>
+{% endblock header %}
+
+{% block content %}
+<section class="container col-8">
+<form action="{% url 'cadastro' %}" method="post" class="form">
+
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+
+    <button type="submit" class="btn btn-primary">cadastrar</button>
+    {% endbuttons %}
+</form>
+</section>
+
+{% endblock %}

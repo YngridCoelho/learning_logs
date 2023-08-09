@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+
+
+{% block header %}
+<h3 class="nav-item"> add new entry </h3>
+<h4 class="nav-item">
+    <a href="{% url 'topic' topic.id %}" class="nav-link"> Topico: {{topic}} </a>
+</h4>
+
+{% endblock header %}
+
+
+
+{% block content %}
+
+<section class="container col-8">
+
+  
+<form action="{% url 'new_entry' topic.id %}" method="post">
+    {% csrf_token %}
+        {% bootstrap_form form %}
+
+        {% buttons %}
+        <button type="submit" class="btn btn-primary"> add entry </button>
+        {% endbuttons %}
+
+</form>
+</section>
+{% endblock %}

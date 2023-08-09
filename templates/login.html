@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block header %}
+<h2>Log in to your account.</h2>
+{% endblock header %}
+
+{% block content %}
+<section class="container col-8">
+<form action="{% url 'login' %}" method="post" class="form">
+
+    {% csrf_token %}
+    <!---insere as regras de estilo do Bootstrap nos
+elementos individuais do formulário quando esses são renderizados--->
+    {% bootstrap_form form %}
+  
+
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">log in</button>
+    {% endbuttons %}
+
+    <!--
+    DESC. ATRIBUTOS => 
+        HIDDEN: elemento ocuto, que pode ser identificado pelo NAME next
+        VALUE: diz ao dajngo para onde o usuario deve ser direcionado caso tenha feito logun com sucesso
+        -->
+</form>
+</section>
+{% endblock %}
