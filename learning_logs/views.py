@@ -134,3 +134,7 @@ def paginator(request):
     page = topic_paginator.get_page(page_num)
 
     return render(request, 'topics.html', {'page': page})
+
+
+def handler404(request, exception):
+    return render(request, 'not_found.html')

@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/error_404/css/' %}" rel="stylesheet">
+    <title>404</title>
+  </head>
+  <body>
+    <div id="colorlib-notfound">
+      <div class="colorlib-notfound">
+        <div class="colorlib-notfound-404">
+          <h1>Voce esta perdido? </h1>
+        </div>
+          <h2 id="colorlib_404_customizer_page_heading"></h2>
+          <p id="colorlib_404_customizer_content"></p>
+      
+        </div>
+      </div>
+      <p class="colorlib-copyright"><a href="https://colorlib.com/" target="_blank">Colorlib.</a></p>
+    </div>
+
+    <a href="{% url 'index' %}">clique aqui para voltar</a>
+
+  </body>
+</html>
