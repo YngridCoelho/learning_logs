@@ -5,12 +5,18 @@ from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 from user import views
 from django.core.paginator import Paginator
-
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
 
+    messages.error(request, "porra,  que merda cara")
     return render(request, 'index.html')
+
+@login_required(login_url='login')
+def dashboard(request, pk):
+    return render(request, 'dashboard.html')
+
 
 @login_required(login_url='login')
 def topics(request):
@@ -25,7 +31,8 @@ def topics(request):
     page = topic_paginator.get_page(page_num) #--> verifica o que deve mostrar na pagina
 
     context = {'page': page}
-    return render(request, 'topics.html', context)
+    return render(request, 'learning-logs/topics.html', context)
+
 
 @login_required(login_url='login')
 def topic(request, pk):
@@ -41,7 +48,7 @@ def topic(request, pk):
     page = entry_paginator.get_page(page_num)
 
     contexto = {'topic': topic, 'page':page}
-    return render(request, 'topic.html', contexto)
+    return render(request, 'learning-logs/topic.html', contexto)
 
 @login_required(login_url='login')
 def new_topic(request):
@@ -63,7 +70,7 @@ def new_topic(request):
 
     context = {'form': form}
 
-    return render (request, 'new_topic.html', context)
+    return render (request, 'learning-logs/new_topic.html', context)
 
 @login_required(login_url='login')
 def new_entry(request, pk):
@@ -81,7 +88,7 @@ def new_entry(request, pk):
             new_entry.save()
             return redirect('topic', pk=topic.pk)
     context = {'topic': topic, 'form': form}
-    return render(request, 'new_entry.html', context)
+    return render(request, 'learning-logs/new_entry.html', context)
 
 @login_required(login_url='login')
 def edit_entry(request, pk):
@@ -102,7 +109,7 @@ def edit_entry(request, pk):
         'topic': topic,
         'form': form
         }
-    return render(request, 'edit_entry.html', context)
+    return render(request, 'learning-logs/edit_entry.html', context)
 
 
 @login_required(login_url='login')
@@ -133,8 +140,19 @@ def paginator(request):
     page_num = request.GET.get('page')
     page = topic_paginator.get_page(page_num)
 
-    return render(request, 'topics.html', {'page': page})
+    return render(request, 'learning-logs/topics.html', {'page': page})
+@login_required(login_url='login')
+def videocall(request):
+
+    context = {
+        'name': request.user
+    }
+    return render(request, 'video-conference/videocall.html', context)
+def new_meeting(request):
+
+    pass
 
 
-def handler404(request, exception):
-    return render(request, 'not_found.html')
+def join_meeting(request):
+
+    pass

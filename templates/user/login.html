@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'partials/base.html' %}
 {% load bootstrap5 %}
 {% load widget_tweaks %}
 
@@ -15,9 +15,6 @@
 
     {% csrf_token %}
         
-        {% for field in form.visible_fields %}
-            <label for="{{field.id_for_label}}">{{field.label}}</label>]
-            {{field|add_class:'form-control' }}
             <!---insere as regras de estilo do Bootstrap nos
         elementos individuais do formulário quando esses são renderizados--->
             {% bootstrap_form form %}
@@ -30,7 +27,7 @@
         HIDDEN: elemento ocuto, que pode ser identificado pelo NAME next
         VALUE: diz ao dajngo para onde o usuario deve ser direcionado caso tenha feito logun com sucesso
         -->
-        {% endfor %}
+      
 </form>
 </section>
 </div>

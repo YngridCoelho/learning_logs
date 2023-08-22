@@ -1,7 +1,7 @@
 {% extends "partials/base.html" %}
+{% load static %}
 {% load bootstrap5 %}
 {% block header %}
-
 <div class='jumbotron'>
     <h1>Track your learning.</h1>
 </div>
@@ -9,6 +9,13 @@
 
 {% block content %}
 
+<div class="dashboard">
+      <h1>Welcome, !</h1>
+      <!-- create a "New Meeting" button -->
+      <a href="{% url 'meeting' %}" class="button">New Meeting</a>
+      <a href="#" class="button">Join Meeting</a>
+      <a href="#" class="button">Logout</a>
+</div>
 <h2>
     <a href="{% url 'cadastro' %}">Register an account</a> to
     make

@@ -11,7 +11,7 @@ class CadastroView(View):
 
     def get(self, request):
         data = {'form': CadastroForm()}
-        return render(request, 'cadastro.html', data)
+        return render(request, 'user/cadastro.html', data)
 
 
     def post(self, request):
@@ -30,12 +30,12 @@ class CadastroView(View):
 
         data = {'form': form}
 
-        return render(request, 'cadastro.html', data)
+        return render(request, 'user/cadastro.html', data)
 
 class LoginView(View):
     def get(self, request):
         data = {'form': LoginForm()}
-        return render(request, 'login.html', data)
+        return render(request, 'user/login.html', data)
 
     def post(self, request):
         form = LoginForm(data=request.POST)
@@ -44,15 +44,16 @@ class LoginView(View):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
 
-            user = authenticate(username=username, password=password)
+            user = authenticate(request, username=username, password=password)
             if user:
             
                 login(request, user)
-                return redirect('index')
+                user = request.user.id
+                return redirect('dashboard', pk=user)
 
         data = {'form': form}
 
-        return render(request, 'login.html', data)
+        return render(request, 'user/login.html', data)
 
 class LogoutView(View):
 
